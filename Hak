@@ -1,0 +1,87 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "gamer",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "gamer",
+   LoadingSubtitle = "by createrfree",
+   ShowText = "Rayfield", -- for mobile users to unhide Rayfield, change if you'd like
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from emitting warnings when the script has a version mismatch with the interface.
+
+   -- ScriptID = "sid_xxxxxxxxxxxx", -- Your Script ID from developer.sirius.menu — enables analytics, managed keys, and script hosting
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include Discord.gg/. E.g. Discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the Discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique, as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that the system will accept, can be RAW file links (pastebin, github, etc.) or simple strings ("hello", "key22")
+   }
+})
+
+local Tab = Window:CreateTab("Tab Example", "rewind")
+
+
+
+local Button = Tab:CreateButton({
+   Name = "fly",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Ahma174/Tool/refs/heads/main/Magic%20Carpet.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "flashlight",
+   Callback = function()
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local mouse = game.Players.LocalPlayer:GetMouse()
+function Light()
+    player = game.Players.LocalPlayer
+    playerChar = player.Character
+    playerLight = playerChar.Torso:FindFirstChild("Light")
+    if playerLight then
+        playerLight:Destroy()
+    else
+        light = Instance.new("SurfaceLight",playerChar:FindFirstChild("Torso"))
+        light.Name = "Light"
+        light.Range = 11 -- Change to distance ofthe Light.
+        light.Brightness = 11 -- Change to how much.
+        light.Shadows = false -- Change it to True/False.
+
+        
+        local play = Instance.new("Sound",playerChar:FindFirstChild("Head"))
+        play.SoundId = "http://www.roblox.com/asset/?id=198914875"
+        play:Play()
+        
+    end
+end
+mouse.KeyDown:connect(function(key)
+key = key:lower()
+if key == "f" then
+    Light()
+end
+end)
+   end,
+})
